@@ -13,25 +13,29 @@ font = FontProperties(fname=path.join(path.dirname(__file__), "./SimSun.ttf"), s
 total = 0
 
 
-def plotbase(fr: int, to: int):
+def plot(x: int, y: int):
     global total
     total += 1
-    for i in range(fr, to):
-        plt.plot(1, i, label=data.columns[i])
-        plt.scatter(data.iloc[:, 0], data.iloc[:, i])
-        plt.xlabel(data.columns[0], fontproperties=font)
-        plt.ylabel("金额/元", fontproperties=font)
-        plt.xlim(1978, 2020)
-    plt.legend(prop=font)
+    plt.plot(1, y, label=data.columns[y])
+    plt.scatter(data.iloc[:, x], data.iloc[:, y])
+    plt.xlabel(data.columns[x], fontproperties=font)
+    plt.ylabel(data.columns[y], fontproperties=font)
     plt.savefig(
         path.join(
             path.dirname(__file__),
-            f"../figures/plot{str(total)}.eps",
+            f"../figures/comparison{str(total)}.eps",
+        )
+    )
+    plt.savefig(
+        path.join(
+            path.dirname(__file__),
+            f"../figures/comparison{str(total)}.png",
         )
     )
     plt.close()
 
+plot(1, 2)
+plot(3, 4)
 
-plotbase(1, 5)
-plotbase(1, 3)
-plotbase(3, 5)
+plot(1, 3)
+plot(2, 4)

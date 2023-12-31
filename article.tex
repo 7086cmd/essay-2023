@@ -9,10 +9,38 @@
 \usepackage{url}   % 网页链接
 \usepackage{subcaption} % 子标题
 \usepackage{geometry}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{appendix}
+\lstset{
+    basicstyle = \sffamily,
+    keywordstyle = \bfseries,
+    commentstyle = \rmfamily\itshape,
+    stringstyle = \ttfamily,
+    flexiblecolumns,
+    numbers = left,
+    showspaces = false,
+    numberstyle = \zihao{-5}\ttfamily,
+    showstringspaces = false,
+    captionpos = t,
+    frame = lrtb,
+}
+\lstdefinestyle{Python}{
+    language = Python,
+    basicstyle = \zihao{-5}\ttfamily,
+    numberstyle = \zihao{-5}\ttfamily,
+    keywordstyle = \color{blue},
+    keywordstyle = [2] \color{teal},
+    stringstyle = \color{magenta},
+    commentstyle = \color{red}\ttfamily,
+    breaklines = true,
+    columns = fixed,
+    basewidth = 0.5em,
+}
 \geometry{a4paper,left=3.17cm,right=3.17cm,top=2.54cm,bottom=2.54cm}
-\title{1978 年至 2018 年中国居民人均可支配收入和支出的数学模型}
+\title{1978 年至 2018 年中国居民人均可支配收入和消费支出的数学模型}
 \author{吴承宇 20230616 \and 刘湑渊 20230610 \and 叶泽宇 20230621 \and 吴可悠 20230617}
-\date{2023 December}
+\date{2023.12.31}
 \begin{document}
 \maketitle
 \section*{摘要}
@@ -25,6 +53,7 @@
 \fangsong
 数学模型 \quad 中国经济 \quad 居民收入 \quad 居民支出 \quad 线性回归
 \end{mdframed}
+
 \section{问题背景}
 改革开放以来, 中国经济发展迅速, 居民收入和支出也随之增长. 本文将对 1978 年至 2018 年中国居民人均可支配收入和支出的数据进行分析, 建立数学模型, 预测未来的发展趋势.\\
 \indent 改革开放以来中国经济发展的客观因素主要有: 对外开放程度的扩大, 人口红利的释放, 以及自 2001 年加入世界贸易组织后, 中国经济与世界经济的深度融合.\\
@@ -166,7 +195,8 @@ $5$ 年后 ($2023$ 年), $10$ 年后 ($2028$ 年) 和 $20$ 年后 ($2038$ 年), 
 \indent 首先, 从数据角度分析, 表 \ref{tab:1} 中显示, 拟合数据误差率都在 $1\%$ 以左右, 因此模型的拟合效果较好.\\
 \indent 其次, 图 \ref{fig:side:d} 和散点图 (见图 \ref{fig:side:c}) 的结果基本相同.\\
 \indent 最后, 从模型的角度分析, 通过对于模型的分析, 可以发现, 从 1978 年至 2018 年, 中国居民人均可支配收入和支出主要呈现指数增长的趋势.\\
-\indent 但是, 由于指数函数模型的特殊性, 到后期时间越长, 增长速度逐渐呈现爆炸性增长, 因此模型的预测结果可能会出现较大的误差.\\
+
+但是, 由于指数函数模型的特殊性, 到后期时间越长, 增长速度逐渐呈现爆炸性增长, 因此模型的预测结果可能会出现较大的误差.\\
 
 \subsection{问题三}
 
@@ -188,5 +218,196 @@ $$
 
 \indent 其中误差 $loss = 0.65037356$, 误差率为 $0.715\%$.\\
 \indent 通过预测, 得到 2038 年城镇常住居民人均收入可支配为 $h\left(2038\right) = 28833.062607$ 元. 然而, 根据数据, 从 2014 年开始, 城镇常住居民人均收入可支配已经超过了 28833 元.\\
-\indent 因此, 二次函数模型的预测结果不及笔者所建立模型准确.\\
+
+因此, 二次函数模型的预测结果不及笔者所建立模型准确.\\
+
+\section{数据特性比较}\label{sec:compare}
+
+\subsection{城乡各自收入支出数据分析}
+
+通过对城乡各自数据以收入为横轴, 支出为纵轴进行散点图绘制 (见图 \ref{fig:side:e} 和图 \ref{fig:side:f}), 可以发现, 城镇和乡村的数据分布规律基本相同. 二者比例基本都呈现线性增长趋势\\
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/comparison1.eps}
+    \caption{城镇各自收入支出数据分析}
+    \label{fig:side:e}
+  \end{minipage}
+  \begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/comparison1.eps}
+    \caption{乡村各自收入支出数据分析}
+    \label{fig:side:f}
+  \end{minipage}
+\end{figure}
+
+\subsection{城乡收入支出数据比较}
+
+通过以城镇收入 (支出) 的数据为横轴, 乡村收入 (支出) 的数据为纵轴进行散点图绘制 (见图 \ref{fig:side:g} 和图 \ref{fig:side:h}), 可以发现, 二者的趋势也基本相同, 整体多呈现二次函数的趋势.\\
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/comparison3.eps}
+    \caption{城乡可支配收入比较}
+    \label{fig:side:g}
+  \end{minipage}
+  \begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/comparison4.eps}
+    \caption{城乡消费支出比较}
+    \label{fig:side:h}
+  \end{minipage}
+\end{figure}
+
+\subsection{综合分析总结}
+
+总体而言, 城乡的数据趋势基本同步, 但是城镇的数据趋势相较于乡村的数据趋势更为明显.\\
+\indent 乡村由于其固有的产业结构特性, 发展的势头不如城镇, 因此应当着眼于对乡村的产业转型, 加快建设产业化, 从而提高乡村的发展速度.\\
+
+由于笔者经历有限, 不再建立回归模型进行分析. 但是, 根据散点图也可以从中略知一二.
+
+\section{模型优缺点分析}\label{sec:advantage}
+
+\subsection{模型优点}
+
+\begin{itemize}
+  \item 通过建立指数函数的回归模型, 笔者发现该模型较好的拟合了数据, 并且预测了未来的发展趋势. 同时, 以自然常数 $e$ 为底数的幂函数, 既能使计算简单, 也可以相对完好的进行拟合分析和数据预测, 较符合经济发展的自然规律和实际情况.
+  \item 通过使用 \texttt{Python} 的 \texttt{sklearn} 库进行线性回归分析, 笔者发现该模型的误差率都在 $1\%$ 以左右, 因此模型的拟合效果较好. 同时, 模型建立也较为简单, 且计算量较小.
+  \item 通过 \texttt{matplotlib} 库绘制散点图, 可以直观的看出数据的分布规律, 从而对于数据进行分析.
+\end{itemize}
+
+\subsection{模型缺点}
+
+\begin{itemize}
+  \item 指数函数模型的增长速率随着时间的增长呈现爆炸性增长, 因此模型的预测结果可能会出现较大的误差.
+  \item 该模型基于 1978 -- 2018 年的数据进行分析, 没有考虑到其他因素的影响. 例如, 2019 年底开始的新冠肺炎疫情对于经济的影响, 以及从 2020 年前后开始的国际形势的变化等等.
+  \item 该模型没有考虑到不同产业结构对于经济发展的影响, 例如, 部分城市的经济发展主要依靠土地财政, 部分城市的经济发展依靠工业, 部分城市的经济发展依靠服务业等等. 不同产业的发展速度和能力不同, 因此对于经济发展的影响也不同.
+  \item 人均收入水平作为一个宏观指标, 并不能完全反映一个国家的经济发展水平. 同时, 对于 CPI, GNP, GDP 等指标的分析也是十分重要的.
+\end{itemize}
+
+\subsection{模型改进}
+
+\begin{itemize}
+  \item 可以通过建立多项式回归模型, 从而减少指数函数模型的爆炸性增长的问题.
+  \item 可以通过建立多元回归模型, 从而考虑到其他因素的影响.
+  \item 可以通过建立多元回归模型, 从而考虑到不同产业结构对于经济发展的影响.
+  \item 可以对 1978 -- 2000 年和 2000 -- 2018 年的数据分别进行分析, 从而考虑到不同时间段的影响.
+  \item 可以对于 CPI, GNP, GDP 等指标进行分析, 从而考虑到不同指标的影响.
+\end{itemize}
+
+\section*{鸣谢}
+
+感谢洪伟智老师和鲍可宇老师在数学建模课程中的指导和帮助. 感谢 \texttt{Python} 和 \LaTeX 以及 \texttt{VS Code} 等开源软件.\\
+\indent 感谢 \texttt{GitHub} 提供的代码托管服务.\\
+\indent 感谢 \texttt{xelatex}, \texttt{bibtex} 等工具提供的支持.\\
+\indent 感谢一直陪伴我写论文的布蕾脆脆奶芙.
+
+\bibliography{refs.bib}{}
+\bibliographystyle{plain}
+\cite{周星2012男生追女生的数学模型}
+\cite{张长生2013改革开放以来中国居民人均收入增长与}
+\cite{华罗庚2011数学模型选谈}
+\cite{刘伟2008中国经济增长中的产业结构变迁和技术进步}
+\cite{刘来福2009数学模型与数学建模}
+
+\section*{附录}
+
+\begin{appendices}
+
+\section{代码}
+\subsection{散点图绘制}
+\lstinputlisting[style=Python]{src/plot.py}
+\subsection{线性回归分析}
+\lstinputlisting[style=Python]{src/analyze.py}
+\subsection{模型预测}
+\lstinputlisting[style=Python]{src/draw.py}
+\subsection{问题 3 二次函数模型}
+\lstinputlisting[style=Python]{src/ques3.py}
+\subsection{横向比较分析}
+\lstinputlisting[style=Python]{src/comparison.plot.py}
+
+\section{数据}
+
+\begin{table}[H]
+  \centering
+  \caption{城乡居民人均可支配收入和支出}
+  \label{tab:3} 
+  \begin{tabular}{ccccc}
+    \hline
+    \textbf{年份} & \textbf{城镇收入} & \textbf{城镇支出} & \textbf{农村收入} & \textbf{农村支出} \\
+    \hline
+    1978 & 343 & 311 & 134 & 116 \\
+    1979 & 387 & 361 & 161 & 135 \\
+    1980 & 478 & 412 & 191 & 162 \\
+    1981 & 458 & 457 & 223 & 191 \\
+    1982 & 495 & 471 & 270 & 220 \\
+    1983 & 526 & 506 & 310 & 248 \\
+    1984 & 608 & 559 & 355 & 274 \\
+    1985 & 739 & 673 & 398 & 317 \\
+    1986 & 900 & 799 & 424 & 357 \\
+    1987 & 1002 & 884 & 463 & 398 \\
+    1988 & 1181 & 1104 & 545 & 477 \\
+    1989 & 1376 & 1211 & 602 & 535 \\
+    1990 & 1510 & 1279 & 686 & 585 \\
+    1991 & 1701 & 1454 & 709 & 620 \\
+    1992 & 2027 & 1672 & 784 & 659 \\
+    1993 & 2577 & 2111 & 922 & 770 \\
+    1994 & 3496 & 2851 & 1221 & 1017 \\
+    1995 & 4283 & 3538 & 1578 & 1310 \\
+    1996 & 4839 & 3919 & 1926 & 1572 \\
+    1997 & 5160 & 4186 & 2090 & 1617 \\
+    1998 & 5425 & 4322 & 2162 & 1590 \\
+    1999 & 5854 & 4616 & 2210 & 1577 \\
+    2000 & 6280 & 4993 & 2253 & 1670 \\
+    2001 & 6860 & 5309 & 2366 & 1741 \\
+    2002 & 7703 & 6030 & 2476 & 1834 \\
+    2003 & 8472 & 6511 & 2622 & 1913 \\
+    2004 & 9122 & 7182 & 2936 & 2185 \\
+    2005 & 10493 & 7943 & 3255 & 2555 \\
+    2006 & 11759 & 8697 & 3587 & 2829 \\
+    2007 & 13786 & 9997 & 4140 & 3224 \\
+    2008 & 15781 & 11243 & 4761 & 3661 \\
+    2009 & 17175 & 12265 & 5153 & 3994 \\
+    2010 & 19109 & 13472 & 5919 & 4382 \\
+    2011 & 21810 & 15160 & 6977 & 5221 \\
+    \hline
+  \end{tabular}
+\end{table}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{ccccc}
+    \hline
+    \textbf{年份} & \textbf{城镇收入} & \textbf{城镇支出} & \textbf{农村收入} & \textbf{农村支出} \\
+    \hline
+    2012 & 24565 & 16674 & 7917 & 5908 \\
+    2013 & 26467 & 18488 & 9130 & 7185 \\
+    2014 & 28844 & 19968 & 10189 & 8383 \\
+    2015 & 31195 & 21392 & 11422 & 9223 \\
+    2016 & 33616 & 23079 & 12363 & 10130 \\
+    2017 & 36396 & 24445 & 13432 & 10955 \\
+    2018 & 39251 & 26112 & 14617 & 12124 \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\section{题目}
+
+\begin{mdframed}
+  \fangsong
+  \textbf{题目:} 改革开放 40 年是我国经济飞速发展, 经济总量连上新台阶的 40 年, 也是全国人民共享改革发展成果, 生活水平大幅提高的 40 年. 2018 年, 我国居民人均可支配收入达到了 28228 元, 扣除价格因素, 比 1978 年实际增长 24.2 倍，年均增长 8.5％. 表 \ref{tab:3} 是国家统计局提供的 1978--2018 年间我国城镇和农村常住居民的人均可支配收入及消费支出情况的统计数据. 某国际知名经济研究机构的高级研究人员预测, 中国的这一发展趋势在未来还将进一步持续.
+\end{mdframed}
+
+\section{仓库}
+
+\begin{mdframed}
+  \fangsong
+  \textbf{仓库:} \url{
+    https://github.com/7086cmd/essay-2023
+  }
+\end{mdframed}
+\end{appendices}
 \end{document}
