@@ -1,5 +1,7 @@
 %!TEX program = xelatex
 \documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
 \usepackage[UTF8]{ctex}
 \usepackage{blindtext}
 \usepackage{graphicx}
@@ -10,8 +12,10 @@
 \usepackage{subcaption} % 子标题
 \usepackage{geometry}
 \usepackage{listings}
+\usepackage{mathptmx}
 \usepackage{color}
 \usepackage{appendix}
+\usepackage{fontspec}
 \lstset{
     basicstyle = \sffamily,
     keywordstyle = \bfseries,
@@ -37,7 +41,8 @@
     columns = fixed,
     basewidth = 0.5em,
 }
-\geometry{a4paper,left=3.17cm,right=3.17cm,top=2.54cm,bottom=2.54cm}
+\geometry{a4paper,scale=0.8}
+\setCJKmainfont[Path=src/, BoldFont={SourceHanSerifSC-Heavy.otf}]{SourceHanSerifSC-Medium.otf}
 \title{1978 年至 2018 年中国居民人均可支配收入和消费支出的数学模型}
 \author{吴承宇 20230616 \and 刘湑渊 20230610 \and 徐雨博 20230619}
 \date{\today}
@@ -46,7 +51,12 @@
 \abstract{
   改革开放以来, 我国经济持续增长, 人民生活水平不断提高. 人均收入水平是一个重要的宏观经济指标, 也是衡量一个国家经济发展水平的重要指标. 本文通过建立回归模型, 分析了从 1978 年至 2018 年中国居民人均可支配收入和支出的数据, 并且对于 10 年内预测了未来的发展趋势.
 }
+
 \textbf{关键词}: 数学模型 \quad 非线性回归 \quad 回归模型 \quad 经济指标
+
+\newpage
+
+\tableofcontents
 
 \newpage
 
@@ -83,7 +93,7 @@
 \par 同时, 将图 \ref{fig:side:a} 和图 \ref{fig:side:b} 叠加在一起 (见图 \ref{fig:side:c}), 可以发现城镇和乡村的数据分布规律基本相同, 但是城镇的增长速度明显快于乡村, 并且随着时间的增长, 差距越来越大.\\
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.8\textwidth]{figures/plot1.eps}
+  \includegraphics[width=0.6\textwidth]{figures/plot1.eps}
   \caption{可支配收入和支出散点图}
   \label{fig:side:c}
 \end{figure}
@@ -141,7 +151,7 @@
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.8\textwidth]{figures/result1.eps}
+  \includegraphics[width=0.6\textwidth]{figures/result1.eps}
   \caption{未来发展趋势}
   \label{fig:side:d}
 \end{figure}
@@ -208,9 +218,9 @@
 
 首先, 根据要求的二次函数拟合模型, 通过 \texttt{Python} 的 \texttt{sklearn} 库, 笔者得到了如下的结果:
 
-\begin{eqation*}
-  h\left(x\right) = 384.786207 + 7.902299 * \left(x-1978\right)^2
-\end{eqation*}
+$$
+  h\left(x\right) = 384.786207 + 7.902299 \times \left(x-1978\right)^2
+$$
 
 \par 其中误差 $loss = 0.65037356$, 误差率为 $0.715\%$.
 \par 通过预测, 得到 2038 年城镇常住居民人均收入可支配为 $h\left(2038\right) = 28833.062607$ 元. 然而, 根据数据, 从 2014 年开始, 城镇常住居民人均收入可支配已经超过了 28833 元.\\
@@ -282,8 +292,6 @@
 
 该数据集的整体趋势和原模型较为相似. 由于笔者精力有限, 不再次建立模型进行评估.
 
-\subsubsection
-
 \subsection{综合分析总结}
 
 \par 总体而言, 城乡的数据趋势基本同步, 但是城镇的数据趋势相较于乡村的数据趋势更为明显.
@@ -321,9 +329,13 @@
 
 \section*{鸣谢}
 
-\par 感谢洪伟智老师和鲍可宇老师在数学建模课程中的指导和帮助. 感谢 \texttt{Python} 和 \LaTeX 以及 \texttt{VS Code} 等开源软件.\\
-\par 感谢 \texttt{GitHub} 提供的代码托管服务.\\
-\par 感谢 \texttt{xelatex}, \texttt{bibtex} 等工具提供的支持.\\
+\begin{itemize}
+    \item 感谢洪伟智老师和鲍可宇老师在数学建模课程中的指导和帮助. 感谢 \texttt{Python} 和 \LaTeX 以及 \texttt{VS Code} 等开源软件.
+    \item 感谢 \texttt{GitHub} 提供的代码托管服务.
+    \item 感谢 \texttt{xelatex}, \texttt{bibtex} 等工具提供的支持.
+\end{itemize}
+
+\paragraph{大模型使用说明} 本文在写作过程中, 使用 ChatGPT 等大模型进行代码辅助编写. 本文中, 数学模型的提出, 模型的分析, 文章的编写均由笔者团队独立完成.
 
 \bibliography{refs.bib}{}
 \bibliographystyle{plain}
