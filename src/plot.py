@@ -8,7 +8,7 @@ data = pd.read_csv(path.join(path.dirname(__file__), "./data.csv"), encoding="ut
 
 # Create 4 plots (scatter) of the data (total 4) (line 0 as the x-axis, line :i: as the y-axis)
 
-font = FontProperties(fname=path.join(path.dirname(__file__), "./SimSun.ttf"), size=14)
+font = FontProperties(fname=path.join(path.dirname(__file__), "./SourceHanSerifSC-Medium.otf"), size=14)
 
 total = 0
 
@@ -27,6 +27,12 @@ def plotbase(fr: int, to: int):
         path.join(
             path.dirname(__file__),
             f"../figures/plot{str(total)}.eps",
+        )
+    )
+    plt.savefig(
+        path.join(
+            path.dirname(__file__),
+            f"../figures/plot{str(total)}.png",
         )
     )
     plt.close()
